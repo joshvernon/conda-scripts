@@ -71,7 +71,7 @@ if __name__ == '__main__':
     import sys
 
     if len(sys.argv) != 3:
-        print('USAGE: python conda_remove_with_deps.py ENVIRONMENT PACKAGE')
+        print('USAGE: python remover.py ENVIRONMENT PACKAGE')
         sys.exit(1)
 
     environment = sys.argv[1]
