@@ -23,7 +23,7 @@ def update_all(update_root=True, *blacklist_envs):
 
     Example usage:
     update_all(True, 'special_env1', 'special_env2')
-    This will update all conda environments (including root) but exluding
+    This will update all conda environments (including root) but excluding
     special_env1 and special_env2.
     """
     # Before we do anything, set the ROOT_PREFIX
