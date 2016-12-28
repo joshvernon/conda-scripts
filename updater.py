@@ -16,7 +16,7 @@ def update_all(update_root=True, *blacklist_envs):
 
     Required arguments:
     update_root -- A Boolean flag that specifies whether the root conda
-                   environemnt should be updated.
+                   environment should be updated (default True).
 
     Optional arguments:
     *blacklist_envs -- Names of environments you don't want updated.
