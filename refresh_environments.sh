@@ -21,7 +21,7 @@
 # WARNING - doing these things will cause problems:
 # 1. Specifying an environment that doesn't exist.
 # 2. Specifying an environment that doesn't have a corresponding
-#    environment file (e.g. myenv.yml)
+#    environment file (e.g. myenv-env.yml)
 
 if [ "$#" -lt 1 ]; then
     echo "You must specify at least one conda environment to refresh."
@@ -31,5 +31,5 @@ fi
 
 for conda_env in "$@"; do
     conda env remove -n $conda_env -y -q
-    conda env create -q -f $conda_env.yml
+    conda env create -q -f $conda_env-env.yml
 done
