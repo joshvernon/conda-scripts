@@ -47,6 +47,31 @@ def update_all(update_root=True, *blacklist_envs):
         env_update_result = conda_api.update(env=env_name, all=True)
         print('Result from environment {0}:\n{1}'.format(env_name, env_update_result))
 
+def pip_update(**pip_package_specs):
+    """Updates pip packages in their respective conda environments.
+
+    Keyword arguments:
+    **pip_package_specs -- The key is the name of the environment, and the
+                           value is an iterable of the pip package names
+                           in that environment you want to update.
+
+    Example usage:
+    pip_package_specs = {'conda_env1':('autobahn','six','txaio',),
+                         'conda_env2':('pika',)}
+    pip_update(**pip_package_specs)
+    This will update autobahn, six, and txaio in the conda environment
+    'conda_env1', and pika in the environment 'conda_env2'.
+    """
+    if pip_package_specs:
+        conda_api.set_root_prefix(get_root_prefix())
+        for env, packages in pip_package_specs.items():
+            pip_args = ['install', '-q', '-U']
+            pip_args.extend(packages)
+            # Equivalent of running 'pip install -q -U package1 package2 ...',
+            # but runs it inside the appropriate conda environment.
+            p = conda_api.process(name=env, cmd='pip', args=pip_args)
+            p.communicate()
+
 if __name__ == '__main__':
     update_all()
         
