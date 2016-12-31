@@ -8,10 +8,10 @@
 # first deleting each environment then re-creating it based on
 # an environment file with the same name in this directory.
 # For example if you have an environment named "myenv", with a
-# corresponding myenv.yml file specifying certain versions
+# corresponding myenv-env.yml file specifying certain versions
 # of certain packages, running refresh_environments.sh myenv
 # will delete the myenv environment then re-create it with
-# the package versions specified in myenv.yml. This is useful
+# the package versions specified in myenv-env.yml. This is useful
 # if you've modified the environment in any way (say by
 # installing, updating, or removing packages) and you want to
 # restore the environment to its earlier state. Basically, it
