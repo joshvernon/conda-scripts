@@ -8,10 +8,10 @@
 # first deleting each environment then re-creating it based on
 # an environment file with the same name in this directory.
 # For example if you have an environment named "myenv", with a
-# corresponding myenv-env.yml file specifying certain versions
+# corresponding myenv-environment.yml file specifying certain versions
 # of certain packages, running refresh_environments.sh myenv
 # will delete the myenv environment then re-create it with
-# the package versions specified in myenv-env.yml. This is useful
+# the package versions specified in myenv-environment.yml. This is useful
 # if you've modified the environment in any way (say by
 # installing, updating, or removing packages) and you want to
 # restore the environment to its earlier state. Basically, it
@@ -21,7 +21,7 @@
 # WARNING - doing these things will cause problems:
 # 1. Specifying an environment that doesn't exist.
 # 2. Specifying an environment that doesn't have a corresponding
-#    environment file (e.g. myenv-env.yml)
+#    environment file (e.g. myenv-environment.yml)
 
 if [ "$#" -lt 1 ]; then
     echo "You must specify at least one conda environment to refresh."
@@ -31,5 +31,5 @@ fi
 
 for conda_env in "$@"; do
     conda env remove -n $conda_env -y -q
-    conda env create -q -f $conda_env-env.yml
+    conda env create -q -f $conda_env-environment.yml
 done
