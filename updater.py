@@ -71,6 +71,8 @@ def pip_update(**pip_package_specs):
             # but runs it inside the appropriate conda environment.
             p = conda_api.process(name=env, cmd='pip', args=pip_args)
             p.communicate()
+            print('Updated the following pip packages in environment {0}: {1}'\
+                  .format(env, ' '.join(packages)))
 
 if __name__ == '__main__':
     update_all()
