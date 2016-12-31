@@ -11,8 +11,8 @@
 # corresponding myenv-environment.yml file specifying certain versions
 # of certain packages, running refresh_environments.sh myenv
 # will delete the myenv environment then re-create it with
-# the package versions specified in myenv-environment.yml. This is useful
-# if you've modified the environment in any way (say by
+# the package versions specified in myenv-environment.yml. This is
+# useful if you've modified the environment in any way (say by
 # installing, updating, or removing packages) and you want to
 # restore the environment to its earlier state. Basically, it
 # just saves you the work of typing a bunch of tedious "conda env"
