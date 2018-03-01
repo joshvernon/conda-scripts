@@ -34,12 +34,12 @@ def update_all(update_root=True, *blacklist_envs):
     envs = [
         os.path.basename(env) for env in conda_api.get_envs()
         if os.path.basename(env) not in blacklist_envs
-    ]
+    ][1:]
 
     print('ROOT_PREFIX is set to: {0}'.format(conda_api.ROOT_PREFIX))
 
     if update_root:
-        root_update_result = conda_api.update(use_local=True, all=True)
+        root_update_result = conda_api.update(use_local=True, all=True, env='base')
         print('Result from environment root:\n{0}'.format(root_update_result))
 
     for env_name in envs:
