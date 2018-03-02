@@ -32,6 +32,8 @@ def update_all(update_root=True, *blacklist_envs):
     conda_api.set_root_prefix(get_root_prefix())
 
     # Get all active environments, excluding the ones in the blacklist.
+    # The root environment will be the first element in this list,
+    # so exclude that also.
     envs = [
         os.path.basename(env) for env in conda_api.get_envs()
         if os.path.basename(env) not in blacklist_envs
@@ -68,7 +70,7 @@ def pip_update(**pip_package_specs):
         for env, packages in pip_package_specs.items():
             pip_args = ['install', '-U']
             pip_args.extend(packages)
-            # Equivalent of running 'pip install -q -U package1 package2 ...',
+            # Equivalent of running 'pip install -U package1 package2 ...',
             # but runs it inside the appropriate conda environment.
             p = conda_api.process(
                 name=env,
