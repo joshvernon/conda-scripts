@@ -6,6 +6,7 @@
 # This script should be run under the root conda environment.
 
 import os.path
+import subprocess
 
 import conda_api
 
@@ -65,14 +66,18 @@ def pip_update(**pip_package_specs):
     if pip_package_specs:
         conda_api.set_root_prefix(get_root_prefix())
         for env, packages in pip_package_specs.items():
-            pip_args = ['install', '-q', '-U']
+            pip_args = ['install', '-U']
             pip_args.extend(packages)
             # Equivalent of running 'pip install -q -U package1 package2 ...',
             # but runs it inside the appropriate conda environment.
-            p = conda_api.process(name=env, cmd='pip', args=pip_args)
-            p.communicate()
-            print('Updated the following pip packages in environment {0}: {1}'\
-                  .format(env, ' '.join(packages)))
+            p = conda_api.process(
+                name=env,
+                cmd='pip',
+                args=pip_args,
+                stdout=subprocess.PIPE
+            )
+            stdout, _ = p.communicate()
+            print('Pip update result from environment {0}:\n{1}'.format(env, stdout))
 
 if __name__ == '__main__':
     update_all()
